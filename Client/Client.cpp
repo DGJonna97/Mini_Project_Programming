@@ -9,8 +9,17 @@
 
 using namespace std;
 
+int sock;
+
+///////////////////////////////////////////////////////
+//                                                   //
+//       THIS PROGRAM ALREADY DOES SENDING           //
+//    BUT YOU CAN STILL CREATE THE SEND FUNCTION     //
+//                                                   //
+///////////////////////////////////////////////////////
+
 int main(){
-  int sock = socket(AF_INET, SOCK_STREAM, 0);
+  sock = socket(AF_INET, SOCK_STREAM, 0);
 
   if(sock == -1){
     cout << "Failed to create socket" << endl;
