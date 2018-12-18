@@ -1,24 +1,58 @@
 #include <iostream>
+#include <ws2tcpip.h>
+
+#pragma comment (lib, "ws2_32.lib")
 
 using namespace std;
 
-int recieveMessage();
-int sendMessage();
+void main() {
+
+	// Initialize winsock
 
 
-int main(int argc, char const *argv[]) {
 
-  return 0;
-}
+	// Create a Socket
+	SOCKET listen = socket(AF_INET, SOCK_STREAM, 0);
+	
+	if (listen == INVALID_SOCKET) {
+		cerr << "Can't create a socket! Terminating" << endl
+	}
+
+	// Bind ip address and port to a socket
 
 
-int recieveMessage (){
 
-  return 0;
-}
+	// Tell winsock the socket is for listening
 
 
-int sendMessage(){
 
-  return 0;
+	// Wait for connection
+
+
+
+	// Close listening socket
+
+
+
+	// While loop accept and echo message back to client
+
+
+
+	// wait for client to send data
+
+
+
+	// echo message back to client
+
+
+
+	// Close the socket
+
+
+
+	// Shutdown winsock
+
+
+
+
 }
