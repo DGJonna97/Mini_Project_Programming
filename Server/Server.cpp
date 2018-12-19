@@ -102,6 +102,20 @@ void main()
 
 string wordlist[5] = { "orange", "bike", "university", "people", "denmark" };
 
+void init(){
+
+   srand(time(NULL));
+   int randomWord = rand() % 4;
+   finalWord = wordlist[randomWord];
+   int mistakes = 0;
+   activeWord = finalWord;
+   for(int i=0; i < finalWord.length(); i++){
+    activeWord[i]= '_';
+   }
+
+   cout << getGameMessage();
+}
+
 void evalVictory(){
 	if (activeWord.compare(finalWord) == 0) {
 		cout >> getVictoryMessage(true) >> endl;
@@ -130,4 +144,21 @@ string getVictoryMessage(bool endGame)
 		return "Winner Winner Chicken Dinner";
 	else // If false
 		return "Better Luck Next Time";
+}
+
+void evalInput(string clientInput){
+    if(clientInput.length()==1){
+       if(finalWord.find(clientInput)!= std::string::npos){
+        for(int i=0; i<finalWord.length(); i++){
+            if(finalWord[i]==clientInput[0]){
+            activeWord[i] = clientInput[0];
+            cout << activeWord <<endl;
+            }
+        }
+       } else {
+           mistakes++;
+            cout << "nah" <<endl;
+        }
+    }
+    evalVictory();
 }
