@@ -140,3 +140,20 @@ string getVictoryMessage(bool endGame)
 	else // If false
 		return "Better Luck Next Time";
 }
+
+void evalInput(string clientInput){
+    if(clientInput.length()==1){
+       if(finalWord.find(clientInput)!= std::string::npos){
+        for(int i=0; i<finalWord.length(); i++){
+            if(finalWord[i]==clientInput[0]){
+            activeWord[i] = clientInput[0];
+            cout << activeWord <<endl;
+            }
+        }
+       } else {
+           mistakes++;
+            cout << "nah" <<endl;
+        }
+    }
+    evalVictory();
+}
