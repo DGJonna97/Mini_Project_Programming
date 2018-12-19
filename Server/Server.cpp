@@ -2,6 +2,7 @@
 #include <WS2tcpip.h>
 #include <string>
 #include <sstream>
+#include <thread>
 
 #pragma comment (lib, "ws2_32.lib")
 
@@ -9,7 +10,7 @@ using namespace std;
 
 void main()
 {
-	// Initialze winsock
+	//Initialze winsock
 	WSADATA wsData;
 	WORD ver = MAKEWORD(2, 2);
 
@@ -19,22 +20,22 @@ void main()
 		return;
 	}
 
-	// Create a socket
+	//Create a socket
 	SOCKET listening = socket(AF_INET, SOCK_STREAM, 0);
 	if (listening == INVALID_SOCKET){
 		cerr << "Can't create a socket! Quitting" << endl;
 		return;
 	}
 
-	// Bind the ip address and port to a socket
+	//Bind the ip address and port to a socket
 	sockaddr_in hint;
 	hint.sin_family = AF_INET;
 	hint.sin_port = htons(54000);
-	hint.sin_addr.S_un.S_addr = INADDR_ANY; // Could also use inet_pton ....
+	hint.sin_addr.S_un.S_addr = INADDR_ANY;
 
 	bind(listening, (sockaddr*)&hint, sizeof(hint));
 
-	// Tell Winsock the socket is for listening
+	//Tell Winsock the socket is for listening
 	listen(listening, SOMAXCONN);
 
 	fd_set master;
@@ -50,13 +51,13 @@ void main()
 		for (int i = 0; i < socketCount; i++){
 			SOCKET sock = copy.fd_array[i];
 			if (sock == listening) {
-				//accept new connection
+				//Accept new connection
 				SOCKET client = accept(listening, nullptr, nullptr);
 
-				//add new connection to the list of connected clients
+				//Add new connection to the list of connected clients
 				FD_SET(client, &master);
 
-				//send a welcome message to the connected client.
+				//Send a welcome message to the connected client.
 				string welcomeMessage = "Welcome to the awesome chat server!\r\n";
 				send(client, welcomeMessage.c_str(), welcomeMessage.size() + 1, 0);
 			} else {
