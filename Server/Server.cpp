@@ -102,6 +102,20 @@ void main()
 
 string wordlist[5] = { "orange", "bike", "university", "people", "denmark" };
 
+void init(){
+
+   srand(time(NULL));
+   int randomWord = rand() % 4;
+   finalWord = wordlist[randomWord];
+   int mistakes = 0;
+   activeWord = finalWord;
+   for(int i=0; i < finalWord.length(); i++){
+    activeWord[i]= '_';
+   }
+
+   cout << getGameMessage();
+}
+
 void evalVictory(){
 	if (activeWord.compare(finalWord) == 0) {
 		cout >> getVictoryMessage(true) >> endl;
