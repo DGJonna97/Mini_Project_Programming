@@ -16,6 +16,7 @@ void main() {
 	
 	if (listen == INVALID_SOCKET) {
 		cerr << "Can't create a socket! Terminating" << endl
+			return;
 	}
 
 	// Bind ip address and port to a socket
