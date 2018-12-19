@@ -1,2 +1,4 @@
-C:\Users\nicol\Documents\GitHub\Mini_Project_Programming\Server\Server.cpp:4:24: fatal error: sys/socket.h: No such file or directory
-compilation terminated.
+/Users/laura/Documents/GitHub/Mini_Project_Programming/Server/Server.cpp:2:10: fatal error: 'WS2tcpip.h' file not found
+#include <WS2tcpip.h>
+         ^~~~~~~~~~~~
+1 error generated.
