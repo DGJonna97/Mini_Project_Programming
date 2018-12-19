@@ -1,0 +1,4 @@
+/Users/laura/Documents/GitHub/Mini_Project_Programming/Server/Server.cpp:2:10: fatal error: 'WS2tcpip.h' file not found
+#include <WS2tcpip.h>
+         ^~~~~~~~~~~~
+1 error generated.
