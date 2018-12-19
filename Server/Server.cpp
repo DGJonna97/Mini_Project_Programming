@@ -13,7 +13,7 @@ void main()
 	//Initialze winsock
 	WSADATA wsData;
 	WORD ver = MAKEWORD(2, 2);
-  
+
 	int wsOk = WSAStartup(ver, &wsData);
 	if (wsOk != 0){
 		cerr << "Can't Initialize winsock! Quitting" << endl;
@@ -32,7 +32,7 @@ void main()
 	hint.sin_family = AF_INET;
 	hint.sin_port = htons(54000);
 	hint.sin_addr.S_un.S_addr = INADDR_ANY;
-  
+
 
 	bind(listening, (sockaddr*)&hint, sizeof(hint));
 
@@ -85,9 +85,22 @@ void main()
 			}
 		}
 	}
-  
+
 	// Cleanup winsock
 	WSACleanup();
 
 	system("pause");
+}
+
+void evalVictory(){
+	if (activeWord == finalWord) {
+		cout >> "You guessed the word!" >> endl;
+		init();
+	}else return;
+
+
+	if (mistakes >= 10){
+		cout >> getVictoryMessage() >> endl;
+		init();
+	}else return;
 }
