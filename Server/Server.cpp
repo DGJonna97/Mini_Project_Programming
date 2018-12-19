@@ -130,12 +130,13 @@ void evalVictory(){
 }
 
 string getGameMessage() {
-	string sendWord = " ";
+	string sendWord = "";
+	
 	for (int i = 0; i < activeWord.length(); i++) {
 		sendWord += activeWord[i] + " ";
 	}
 
-	return "[" + activeWord + "] - Mistakes: " + mistakes + "/10";
+	return "[" + sendWord + "] - Mistakes: " + mistakes + "/10";
 }
 
 string getVictoryMessage(bool endGame)
