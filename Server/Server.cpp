@@ -101,6 +101,8 @@ void main()
 	system("pause");
 }
 
+string wordlist[5] = { "orange", "bike", "university", "people", "denmark" };
+
 void evalVictory(){
 	if (activeWord == finalWord) {
 		cout >> "You guessed the word!" >> endl;
