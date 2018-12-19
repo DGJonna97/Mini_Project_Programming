@@ -8,6 +8,8 @@
 
 using namespace std;
 
+evalVictory();
+
 void main()
 {
 	//Initialze winsock
