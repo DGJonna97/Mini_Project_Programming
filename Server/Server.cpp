@@ -104,16 +104,16 @@ void main()
 string wordlist[5] = { "orange", "bike", "university", "people", "denmark" };
 
 void evalVictory(){
-	if (activeWord == finalWord) {
-		cout >> "You guessed the word!" >> endl;
+	if (activeWord.compare(finalWord) == 0) {
+		cout >> getVictoryMessage(true) >> endl;
 		init();
-	}else return;
+	}
 
 
 	if (mistakes >= 10){
-		cout >> getVictoryMessage() >> endl;
+		cout >> getVictoryMessage(false) >> endl;
 		init();
-	}else return;
+	}
 }
 
 string getGameMessage() {
