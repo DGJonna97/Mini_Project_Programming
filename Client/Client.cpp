@@ -10,10 +10,6 @@
 using namespace std;
 
 int sock;
-int mistakes;
-string[] wordlist;
-string finalWord;
-string activeWord;
 
 int main(){
   sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -64,17 +60,6 @@ int main(){
     }
 
   } while(true);
-
-  string getGameMessage();
-  return "[" + activeWord + "] - Mistakes: " + mistakes + "/5";
-
-  string getVictoryMessage(bool endGame)
-  {
-	  if (endGame) // If true
-		  return "Winner Winner Chicken Dinner";
-	  else // If false
-		  return "Better Luck Next Time";
-  }
   
   close(sock);
 

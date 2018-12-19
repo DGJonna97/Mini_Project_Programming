@@ -8,7 +8,14 @@
 
 using namespace std;
 
+int mistakes;
+string[] wordlist;
+string finalWord;
+string activeWord;
+
 evalVictory();
+getGameMessage();
+getVictoryMessage();
 
 void main()
 {
@@ -105,4 +112,15 @@ void evalVictory(){
 		cout >> getVictoryMessage() >> endl;
 		init();
 	}else return;
+}
+
+string getGameMessage();
+return "[" + activeWord + "] - Mistakes: " + mistakes + "/5";
+
+string getVictoryMessage(bool endGame)
+{
+	if (endGame) // If true
+		return "Winner Winner Chicken Dinner";
+	else // If false
+		return "Better Luck Next Time";
 }
