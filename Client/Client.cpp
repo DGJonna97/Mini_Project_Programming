@@ -11,12 +11,6 @@ using namespace std;
 
 int sock;
 
-///////////////////////////////////////////////////////
-//                                                   //
-//       THIS PROGRAM ALREADY DOES SENDING           //
-//    BUT YOU CAN STILL CREATE THE SEND FUNCTION     //
-//                                                   //
-///////////////////////////////////////////////////////
 
 int main(){
   sock = socket(AF_INET, SOCK_STREAM, 0);
