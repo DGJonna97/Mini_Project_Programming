@@ -14,6 +14,7 @@ void main() {
 	// Create a Socket
 	SOCKET listen = socket(AF_INET, SOCK_STREAM, 0);
 	
+	// Cerr is an object of ostream, that represents the standard 'error stream' oriented to narrow characters (of type 'char')
 	if (listen == INVALID_SOCKET) {
 		cerr << "Can't create a socket! Terminating" << endl
 			return;
