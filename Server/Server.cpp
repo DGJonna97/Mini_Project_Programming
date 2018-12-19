@@ -13,7 +13,7 @@ void main()
 	//Initialze winsock
 	WSADATA wsData;
 	WORD ver = MAKEWORD(2, 2);
-
+  
 	int wsOk = WSAStartup(ver, &wsData);
 	if (wsOk != 0){
 		cerr << "Can't Initialize winsock! Quitting" << endl;
@@ -32,8 +32,10 @@ void main()
 	hint.sin_family = AF_INET;
 	hint.sin_port = htons(54000);
 	hint.sin_addr.S_un.S_addr = INADDR_ANY;
+  
 
 	bind(listening, (sockaddr*)&hint, sizeof(hint));
+
 
 	//Tell Winsock the socket is for listening
 	listen(listening, SOMAXCONN);
@@ -83,7 +85,7 @@ void main()
 			}
 		}
 	}
-
+  
 	// Cleanup winsock
 	WSACleanup();
 
