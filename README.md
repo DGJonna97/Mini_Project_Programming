@@ -1,6 +1,3 @@
 # Mini_Project_Programming
-The group project for the programming course.
-The hand-in is a chat program, with multiple clients and a server.
-The code will be written in C++ in ???
-Jonatan, Laura and Nicolai work on the TCP server.
-Ania, Damian and Mathias work on the clients.
+The program consists of a server and multiple clients.
+It is a multiplayer 'HANGMAN' game, where the server provides the word for the users to guess
