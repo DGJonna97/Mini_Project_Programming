@@ -117,7 +117,7 @@ void evalVictory(){
 }
 
 string getGameMessage() {
-	return "[" + activeWord + "] - Mistakes: " + mistakes + "/5";
+	return "[" + activeWord + "] - Mistakes: " + mistakes + "/10";
 }
 
 string getVictoryMessage(bool endGame)
