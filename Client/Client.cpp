@@ -1,26 +1,33 @@
 #include <iostream>
-#include <sys/types.h>
-#include <unistd.h>
-#include <sys/socket.h>
-#include <netdb.h>
-#include <arpa/inet.h>
-#include <string.h>
 #include <string>
+#include <WS2tcpip.h>
+#pragma comment(lib, "ws2_32.lib")
 
 using namespace std;
 
 int sock;
 
+int port = 18339;
+string ipAddr = "127.0.0.1";
+
 int main(){
   sock = socket(AF_INET, SOCK_STREAM, 0);
+
+  // Initialize Windows Socket
+	WSAData data;
+	WORD ver = MAKEWORD(2, 2);
+	int wsResult = WSAStartup(ver, &data);
+	if (wsResult != 0)
+	{
+		cerr << "Can't start Window Socket" << wsResult << endl;
+		return;
+	}
+
 
   if(sock == -1){
     cout << "Failed to create socket" << endl;
     return 1;
   }
-
-  int port = 80;
-  string ipAddr = "95.154.22.40";
 
   sockaddr_in hint; //IPv4
   hint.sin_family = AF_INET;
@@ -32,6 +39,8 @@ int main(){
 
   if(connResult == -1){
     cout << "Failed to connect to sockaddr" << endl;
+    closesocket(sock);
+    WSACleanup();
     return 1;
   }
 
@@ -60,7 +69,7 @@ int main(){
     }
 
   } while(true);
-  
+
   close(sock);
 
   cout << "Done" << endl;
