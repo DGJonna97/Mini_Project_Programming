@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <WS2tcpip.h>
+#include <thread>
+
 #pragma comment(lib, "ws2_32.lib")
 
 using namespace std;
@@ -9,6 +11,8 @@ int sock;
 
 int port = 18339;
 string ipAddr = "127.0.0.1";
+
+bool running = true;
 
 int main(){
   sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -47,8 +51,24 @@ int main(){
   char recvMsg[2048];
   string sendMsg;
 
-  do {
+  thread input(pollInput);
 
+  while(running) {
+    memset(recvMsg, 0, sizeof(recvMsg));
+    int recvResult = recv(sock, recvMsg, sizeof(recvMsg), 0);
+
+    cout << string(recvMsg, recvResult) << endl;
+  }
+
+  close(sock);
+
+  cout << "Done" << endl;
+  return 0;
+}
+
+function pollInput(){
+
+  while(running){
     cout << "> ";
     getline(cin, sendMsg);
 
@@ -58,20 +78,5 @@ int main(){
       cout << "Failed to send message" << endl;
       continue;
     }
-
-    memset(recvMsg, 0, sizeof(recvMsg));
-    int recvResult = recv(sock, recvMsg, sizeof(recvMsg), 0);
-
-    if(recvResult >= 0){
-      cout << "Recieved empty message" << endl;
-    }else{
-      cout << "= " << string(recvMsg, recvResult) << endl;
-    }
-
-  } while(true);
-
-  close(sock);
-
-  cout << "Done" << endl;
-  return 0;
+  }
 }
