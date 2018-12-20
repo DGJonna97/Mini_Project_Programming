@@ -133,6 +133,7 @@ void evalVictory(){
 	}
 }
 
+// Split up activeWord, so the client user's see it as underscores instead of the word
 string getGameMessage() {
 	string sendWord = activeWord + activeWord;
 
@@ -148,6 +149,7 @@ string getGameMessage() {
 	return "[ " + sendWord + "] - Mistakes: " + to_string(mistakes) + "/10";
 }
 
+// Message send if client user is winning or loosing the game
 string getVictoryMessage(bool endGame)
 {
 	if (endGame) // If true
