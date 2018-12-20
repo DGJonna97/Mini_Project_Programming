@@ -9,9 +9,15 @@
 using namespace std;
 
 int mistakes;
-string[] wordlist;
+string wordlist[25] = { "orange", "bike", "university", "people", "denmark",
+												"mathematics", "beautiful", "programming", "picturesque",
+												"challenge", "timetable", "aggressive", "blockbuster",
+												"tropical", "creativity", "intelligence", "cinematography",
+												"detention", "dictionary", "poster", "patriotic", "geology",
+												"comment", "prehistorical", "bibliography" };
 string finalWord;
 string activeWord;
+fd_set master;
 
 void sendMsg(string msg);
 void init();
@@ -49,11 +55,11 @@ void main()
 
 	//Tell Winsock the socket is for listening
 	listen(listening, SOMAXCONN);
-	fd_set master;
+
 	FD_ZERO(&master);
 	FD_SET(listening, &master);
 
-	//initialize the game
+	//Initialize the game
 	init();
 
 	while (true) {
@@ -97,8 +103,6 @@ void main()
 	system("pause");
 }
 
-string wordlist[25] = { "orange", "bike", "university", "people", "denmark", "mathematics", "beautiful", "programming", "picturesque", "challenge", "timetable", "aggressive", "blockbuster", "tropical", "creativity", "intelligence", "cinematography", "detention", "dictionary", "poster", "patriotic", "geology", "comment", "prehistorical", "bibliography" };
-
 void sendMsg(string msg) {
 	for (int i = 0; i < master.fd_count; i++) {
 		SOCKET outSock = master.fd_array[i];
@@ -111,14 +115,14 @@ void init(){
    srand(time(NULL));
    int randomWord = rand() % 4;
    finalWord = wordlist[randomWord];
-   mistakes = 0;	//Needs to just be mistakes (remove int)
+   mistakes = 0;
    activeWord = finalWord;
 
    for(int i=0; i < finalWord.length(); i++){
     activeWord[i]= '_';
    }
 
-   sendMsg(getGameMessage()); //Needs change (sendMsg)
+   sendMsg(getGameMessage());
 }
 
 void evalVictory(){
@@ -167,12 +171,12 @@ void evalInput(string clientInput){
         for(int i=0; i<finalWord.length(); i++){
             if(finalWord[i]==clientInput[0]){
             activeWord[i] = clientInput[0];
-            cout << activeWord <<endl; //Needs change (sendMsg)
+            cout << activeWord <<endl;
             }
         }
        } else {
            mistakes++;
-           sendMsg("upsi dupsi");  //Needs to go.
+           sendMsg("upsi dupsi");
         }
     }
 		sendMsg(activeWord);
