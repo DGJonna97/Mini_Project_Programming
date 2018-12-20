@@ -122,18 +122,21 @@ void init(){
 }
 
 void evalVictory(){
+	//Compares two words: original word and guessed word, to check if it correct
+ 	//and then sends the victory message if the word was guessed correct
 	if (activeWord.compare(finalWord) == 0) {
 		sendMsg(getVictoryMessage(true));
 		init();
 	}
 
-
+	// sends the loss message if the maximum number of mistakes was reached
 	if (mistakes >= 10){
 		sendMsg(getVictoryMessage(false));
 		init();
 	}
 }
 
+// Split up activeWord, so the client user's see it as underscores instead of the word
 string getGameMessage() {
 	string sendWord = activeWord + activeWord;
 
@@ -149,6 +152,7 @@ string getGameMessage() {
 	return "[ " + sendWord + "] - Mistakes: " + to_string(mistakes) + "/10";
 }
 
+// Message send if client user is winning or loosing the game
 string getVictoryMessage(bool endGame)
 {
 	if (endGame) // If true
@@ -168,8 +172,9 @@ void evalInput(string clientInput){
         }
        } else {
            mistakes++;
-            cout << "nah" <<endl;  //Needs to go.
+           sendMsg("upsi dupsi");  //Needs to go.
         }
     }
+		sendMsg(activeWord);
     evalVictory();
 }
