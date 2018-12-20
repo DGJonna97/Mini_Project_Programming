@@ -118,7 +118,7 @@ void init(){
     activeWord[i]= '_';
    }
 
-   cout << sendMsg(getGameMessage()); //Needs change (sendMsg)
+   sendMsg(getGameMessage()); //Needs change (sendMsg)
 }
 
 void evalVictory(){
