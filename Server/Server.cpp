@@ -13,12 +13,17 @@ string[] wordlist;
 string finalWord;
 string activeWord;
 
-evalVictory();
-getGameMessage();
-getVictoryMessage();
+void sendMsg(string msg);
+void init();
+void evalVictory();
+string getGameMessage();
+string getVictoryMessage(bool endGame);
+void evalInput(string clientInput);
 
 void main()
 {
+	init();
+
 	//Initialze winsock
 	WSADATA wsData;
 	WORD ver = MAKEWORD(2, 2);
@@ -78,17 +83,6 @@ void main()
 				if (bytesIn <= 0) {
 					closesocket(sock);
 					FD_CLR(sock, &master);
-				} else {
-					for (int i = 0; i < master.fd_count; i++){
-						SOCKET outSock = master.fd_array[i];
-						if (outSock != listening && outSock != sock) {
-							ostringstream ss;
-							ss << "Socket #" << sock << ": " << buf << "\r\n";
-							string strOut = ss.str();
-
-							send(outSock, strOut.c_str(), strOut.size() + 1, 0);
-						}
-					}
 				}
 			}
 		}
@@ -101,6 +95,13 @@ void main()
 }
 
 string wordlist[5] = { "orange", "bike", "university", "people", "denmark" };
+
+void sendMsg(string msg) {
+	for (int i = 0; i < master.fd_count; i++) {
+		SOCKET outSock = master.fd_array[i];
+			send(outSock, msg.c_str(), msg.size() + 1, 0);
+	}
+}
 
 void init(){
 
@@ -131,7 +132,7 @@ void evalVictory(){
 
 string getGameMessage() {
 	string sendWord = "";
-	
+
 	for (int i = 0; i < activeWord.length(); i++) {
 		sendWord += activeWord[i] + " ";
 	}
