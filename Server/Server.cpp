@@ -83,6 +83,8 @@ void main()
 				if (bytesIn <= 0) {
 					closesocket(sock);
 					FD_CLR(sock, &master);
+				} else{
+					evalInput(buf);
 				}
 			}
 		}
@@ -108,24 +110,33 @@ void init(){
    srand(time(NULL));
    int randomWord = rand() % 4;
    finalWord = wordlist[randomWord];
-   int mistakes = 0;
+   int mistakes = 0;	//Needs to just be mistakes (remove int)
    activeWord = finalWord;
+
    for(int i=0; i < finalWord.length(); i++){
     activeWord[i]= '_';
    }
 
-   cout << getGameMessage();
+   cout << getGameMessage(); //Needs change (sendMsg)
 }
 
 void evalVictory(){
 	if (activeWord.compare(finalWord) == 0) {
-		cout >> getVictoryMessage(true) >> endl;
+<<<<<<< HEAD
+		cout >> getVictoryMessage(true) >> endl; //Needs change (sendMsg)
+=======
+		sendMsg(getVictoryMessage(true));
+>>>>>>> d237e6eded9b14db81061941a317503482e62f32
 		init();
 	}
 
 
 	if (mistakes >= 10){
-		cout >> getVictoryMessage(false) >> endl;
+<<<<<<< HEAD
+		cout >> getVictoryMessage(false) >> endl; //Needs change (sendMsg)
+=======
+		sendMsg(getVictoryMessage(false));
+>>>>>>> d237e6eded9b14db81061941a317503482e62f32
 		init();
 	}
 }
@@ -159,12 +170,12 @@ void evalInput(string clientInput){
         for(int i=0; i<finalWord.length(); i++){
             if(finalWord[i]==clientInput[0]){
             activeWord[i] = clientInput[0];
-            cout << activeWord <<endl;
+            cout << activeWord <<endl; //Needs change (sendMsg)
             }
         }
        } else {
            mistakes++;
-            cout << "nah" <<endl;
+            cout << "nah" <<endl;  //Needs to go.
         }
     }
     evalVictory();
