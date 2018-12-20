@@ -123,12 +123,14 @@ void init(){
 }
 
 void evalVictory(){
+	//Compares two words: original word and guessed word, to check if it correct
+	//and then sends the victory message if the word was guessed correct
 	if (activeWord.compare(finalWord) == 0) {
 		sendMsg(getVictoryMessage(true));
 		init();
 	}
 
-
+	// sends the loss message if the maximum number of mistakes was reached
 	if (mistakes >= 10){
 		sendMsg(getVictoryMessage(false));
 		init();
