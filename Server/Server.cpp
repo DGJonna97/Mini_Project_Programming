@@ -22,8 +22,6 @@ void evalInput(string clientInput);
 
 void main()
 {
-	init();
-
 	//Initialze winsock
 	WSADATA wsData;
 	WORD ver = MAKEWORD(2, 2);
@@ -49,14 +47,14 @@ void main()
 
 	bind(listening, (sockaddr*)&hint, sizeof(hint));
 
-
 	//Tell Winsock the socket is for listening
 	listen(listening, SOMAXCONN);
-
 	fd_set master;
 	FD_ZERO(&master);
-
 	FD_SET(listening, &master);
+
+	//initialize the game
+	init();
 
 	while (true) {
 		fd_set copy = master;
@@ -73,8 +71,9 @@ void main()
 				FD_SET(client, &master);
 
 				//Send a welcome message to the connected client.
-				string welcomeMessage = "Welcome to the awesome chat server!\r\n";
+				string welcomeMessage = "Welcome to the awesome Hangman game server!\n";
 				send(client, welcomeMessage.c_str(), welcomeMessage.size() + 1, 0);
+				sendMsg(activeWord);
 			} else {
 				//Inbound message
 				char buf[4096];
@@ -123,14 +122,12 @@ void init(){
 }
 
 void evalVictory(){
-	//Compares two words: original word and guessed word, to check if it correct
-	//and then sends the victory message if the word was guessed correct
 	if (activeWord.compare(finalWord) == 0) {
 		sendMsg(getVictoryMessage(true));
 		init();
 	}
 
-	// sends the loss message if the maximum number of mistakes was reached
+
 	if (mistakes >= 10){
 		sendMsg(getVictoryMessage(false));
 		init();
@@ -157,9 +154,9 @@ string getGameMessage() {
 string getVictoryMessage(bool endGame)
 {
 	if (endGame) // If true
-		return "Winner Winner Chicken Dinner";
+		return "Winner Winner Chicken Dinner\n";
 	else // If false
-		return "Better Luck Next Time";
+		return "Better Luck Next Time\n";
 }
 
 void evalInput(string clientInput){
@@ -168,13 +165,13 @@ void evalInput(string clientInput){
         for(int i=0; i<finalWord.length(); i++){
             if(finalWord[i]==clientInput[0]){
             activeWord[i] = clientInput[0];
+            cout << activeWord <<endl; //Needs change (sendMsg)
             }
         }
        } else {
            mistakes++;
-           sendMsg("Upsi dupsi");
+            cout << "nah" <<endl;  //Needs to go.
         }
     }
-    sendMsg(activeWord);
     evalVictory();
 }
