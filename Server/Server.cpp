@@ -162,13 +162,13 @@ void evalInput(string clientInput){
         for(int i=0; i<finalWord.length(); i++){
             if(finalWord[i]==clientInput[0]){
             activeWord[i] = clientInput[0];
-            cout << activeWord <<endl; //Needs change (sendMsg)
             }
         }
        } else {
            mistakes++;
-            cout << "nah" <<endl;  //Needs to go.
+           sendMsg("Upsi dupsi");
         }
     }
+    sendMsg(activeWord);
     evalVictory();
 }
