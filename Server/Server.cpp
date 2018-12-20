@@ -76,11 +76,13 @@ void main()
 				string welcomeMessage = "Welcome to the awesome chat server!\r\n";
 				send(client, welcomeMessage.c_str(), welcomeMessage.size() + 1, 0);
 			} else {
+				//Inbound message
 				char buf[4096];
 				ZeroMemory(buf, 4096);
 
 				int bytesIn = recv(sock, buf, 4096, 0);
 				if (bytesIn <= 0) {
+					//Drop client
 					closesocket(sock);
 					FD_CLR(sock, &master);
 				} else{
