@@ -122,21 +122,13 @@ void init(){
 
 void evalVictory(){
 	if (activeWord.compare(finalWord) == 0) {
-<<<<<<< HEAD
-		cout >> getVictoryMessage(true) >> endl; //Needs change (sendMsg)
-=======
 		sendMsg(getVictoryMessage(true));
->>>>>>> d237e6eded9b14db81061941a317503482e62f32
 		init();
 	}
 
 
 	if (mistakes >= 10){
-<<<<<<< HEAD
-		cout >> getVictoryMessage(false) >> endl; //Needs change (sendMsg)
-=======
 		sendMsg(getVictoryMessage(false));
->>>>>>> d237e6eded9b14db81061941a317503482e62f32
 		init();
 	}
 }
