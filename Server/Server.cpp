@@ -97,7 +97,7 @@ void main()
 	system("pause");
 }
 
-string wordlist[5] = { "orange", "bike", "university", "people", "denmark" };
+string wordlist[25] = { "orange", "bike", "university", "people", "denmark", "mathematics", "beautiful", "programming", "picturesque", "challenge", "timetable", "aggressive", "blockbuster", "tropical", "creativity", "intelligence", "cinematography", "detention", "dictionary", "poster", "patriotic", "geology", "comment", "prehistorical", "bibliography" };
 
 void sendMsg(string msg) {
 	for (int i = 0; i < master.fd_count; i++) {
@@ -111,14 +111,14 @@ void init(){
    srand(time(NULL));
    int randomWord = rand() % 4;
    finalWord = wordlist[randomWord];
-   int mistakes = 0;	//Needs to just be mistakes (remove int)
+   mistakes = 0;	//Needs to just be mistakes (remove int)
    activeWord = finalWord;
 
    for(int i=0; i < finalWord.length(); i++){
     activeWord[i]= '_';
    }
 
-   cout << getGameMessage(); //Needs change (sendMsg)
+   cout << sendMsg(getGameMessage()); //Needs change (sendMsg)
 }
 
 void evalVictory(){
