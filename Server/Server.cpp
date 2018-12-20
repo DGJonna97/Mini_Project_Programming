@@ -76,11 +76,13 @@ void main()
 				string welcomeMessage = "Welcome to the awesome chat server!\r\n";
 				send(client, welcomeMessage.c_str(), welcomeMessage.size() + 1, 0);
 			} else {
+				//Inbound message
 				char buf[4096];
 				ZeroMemory(buf, 4096);
 
 				int bytesIn = recv(sock, buf, 4096, 0);
 				if (bytesIn <= 0) {
+					//Drop client
 					closesocket(sock);
 					FD_CLR(sock, &master);
 				} else{
@@ -121,18 +123,21 @@ void init(){
 }
 
 void evalVictory(){
+	//Compares two words: original word and guessed word, to check if it correct
+	//and then sends the victory message if the word was guessed correct
 	if (activeWord.compare(finalWord) == 0) {
 		sendMsg(getVictoryMessage(true));
 		init();
 	}
 
-
+	// sends the loss message if the maximum number of mistakes was reached
 	if (mistakes >= 10){
 		sendMsg(getVictoryMessage(false));
 		init();
 	}
 }
 
+// Split up activeWord, so the client user's see it as underscores instead of the word
 string getGameMessage() {
 	string sendWord = activeWord + activeWord;
 
@@ -148,6 +153,7 @@ string getGameMessage() {
 	return "[ " + sendWord + "] - Mistakes: " + to_string(mistakes) + "/10";
 }
 
+// Message send if client user is winning or loosing the game
 string getVictoryMessage(bool endGame)
 {
 	if (endGame) // If true
