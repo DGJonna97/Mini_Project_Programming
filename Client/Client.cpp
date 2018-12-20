@@ -32,8 +32,6 @@ void pollInput() {
 }
 
 int main() {
-	sock = socket(AF_INET, SOCK_STREAM, 0);
-
 	// Initialize Windows Socket
 	WSAData data;
 	WORD ver = MAKEWORD(2, 2);
@@ -43,6 +41,8 @@ int main() {
 		cerr << "Can't start Window Socket" << wsResult << endl;
 		return 1;
 	}
+
+  sock = socket(AF_INET, SOCK_STREAM, 0);
 
 
 	if (sock == -1) {

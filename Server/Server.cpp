@@ -112,6 +112,7 @@ void init(){
    finalWord = wordlist[randomWord];
    int mistakes = 0;	//Needs to just be mistakes (remove int)
    activeWord = finalWord;
+
    for(int i=0; i < finalWord.length(); i++){
     activeWord[i]= '_';
    }
@@ -121,13 +122,21 @@ void init(){
 
 void evalVictory(){
 	if (activeWord.compare(finalWord) == 0) {
+<<<<<<< HEAD
 		cout >> getVictoryMessage(true) >> endl; //Needs change (sendMsg)
+=======
+		sendMsg(getVictoryMessage(true));
+>>>>>>> d237e6eded9b14db81061941a317503482e62f32
 		init();
 	}
 
 
 	if (mistakes >= 10){
+<<<<<<< HEAD
 		cout >> getVictoryMessage(false) >> endl; //Needs change (sendMsg)
+=======
+		sendMsg(getVictoryMessage(false));
+>>>>>>> d237e6eded9b14db81061941a317503482e62f32
 		init();
 	}
 }
