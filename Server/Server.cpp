@@ -22,8 +22,6 @@ void evalInput(string clientInput);
 
 void main()
 {
-	init();
-
 	//Initialze winsock
 	WSADATA wsData;
 	WORD ver = MAKEWORD(2, 2);
@@ -49,14 +47,14 @@ void main()
 
 	bind(listening, (sockaddr*)&hint, sizeof(hint));
 
-
 	//Tell Winsock the socket is for listening
 	listen(listening, SOMAXCONN);
-
 	fd_set master;
 	FD_ZERO(&master);
-
 	FD_SET(listening, &master);
+
+	//initialize the game
+	init();
 
 	while (true) {
 		fd_set copy = master;
