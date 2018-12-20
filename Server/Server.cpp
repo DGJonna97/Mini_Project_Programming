@@ -157,9 +157,9 @@ string getGameMessage() {
 string getVictoryMessage(bool endGame)
 {
 	if (endGame) // If true
-		return "Winner Winner Chicken Dinner";
+		return "Winner Winner Chicken Dinner\n";
 	else // If false
-		return "Better Luck Next Time";
+		return "Better Luck Next Time\n";
 }
 
 void evalInput(string clientInput){
