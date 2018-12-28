@@ -2,7 +2,7 @@
 #include <WS2tcpip.h>
 #include <string>
 #include <sstream>
-#include <thread>
+#include <time.h>
 
 #pragma comment (lib, "ws2_32.lib")
 
@@ -79,7 +79,7 @@ void main()
 				//Send a welcome message to the connected client.
 				string welcomeMessage = "Welcome to the awesome Hangman game server!\n";
 				send(client, welcomeMessage.c_str(), welcomeMessage.size() + 1, 0);
-				sendMsg(activeWord);
+				sendMsg(getGameMessage());
 			} else {
 				//Inbound message
 				char buf[4096];
@@ -179,6 +179,6 @@ void evalInput(string clientInput){
            sendMsg("upsi dupsi");
         }
     }
-		sendMsg(activeWord);
+		sendMsg(getGameMessag());
     evalVictory();
 }
