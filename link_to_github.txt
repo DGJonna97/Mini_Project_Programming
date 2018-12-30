@@ -1,9 +1,9 @@
 The link to our github: https://github.com/DGJonna97/Mini_Project_Programming
 
 The program is made in Visual Studio 2017, which means the code cannot run in Atom, CodeBlocks, or alike.
+To run the code locate the exe files in:
 
-To run the code in Visual studio, then you need to download the project, then open two new Visual Studio projects, where the server and client code are copied into their own new project.
-You have to start by running the server code, and then you can connect to the server by running the client code.
+Final/Client/Release/Client.exe
+Final/Server/Release/Server.exe
 
-The program is a HANGMAN game, where the server randomly choose a word, and the user have to guess the word. If the user guesses wrong x amount, then the user lose the game.
-If the user guess the word, he/she wins.
+Further instructions can be found in the Github Wiki.
