@@ -1,0 +1,8 @@
+﻿  Server.cpp
+c:\users\nicol\documents\visual studio 2015\projects\dnd\server\server\server.cpp(153): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+c:\users\nicol\documents\visual studio 2015\projects\dnd\server\server\server.cpp(159): warning C4018: '<': signed/unsigned mismatch
+c:\users\nicol\documents\visual studio 2015\projects\dnd\server\server\server.cpp(168): warning C4018: '<': signed/unsigned mismatch
+c:\users\nicol\documents\visual studio 2015\projects\dnd\server\server\server.cpp(178): warning C4018: '<': signed/unsigned mismatch
+c:\users\nicol\documents\visual studio 2015\projects\dnd\server\server\server.cpp(202): warning C4018: '<': signed/unsigned mismatch
+  Server.vcxproj -> C:\Users\nicol\Documents\Visual Studio 2015\Projects\DnD\Server\Debug\Server.exe
+  Server.vcxproj -> C:\Users\nicol\Documents\Visual Studio 2015\Projects\DnD\Server\Debug\Server.pdb (Partial PDB)

@@ -1,0 +1,11 @@
+﻿  Server.cpp
+Server.cpp(153): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+Server.cpp(159): warning C4018: '<': signed/unsigned mismatch
+Server.cpp(168): warning C4018: '<': signed/unsigned mismatch
+Server.cpp(178): warning C4018: '<': signed/unsigned mismatch
+Server.cpp(202): warning C4018: '<': signed/unsigned mismatch
+  Generating code
+  All 145 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  Server.vcxproj -> C:\Users\nicol\Documents\Visual Studio 2015\Projects\DnD\Server\Release\Server.exe
+  Server.vcxproj -> C:\Users\nicol\Documents\Visual Studio 2015\Projects\DnD\Server\Release\Server.pdb (Full PDB)
