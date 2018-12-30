@@ -14,19 +14,24 @@ string ipAddr = "127.0.0.1";
 
 bool running = true;
 
-void pollInput() {
+void pollInput() { // Function for continually polling for user input. Will be started in a seperate thread
 
 	string sendMsg;
 
+	//Polling loop
 	while (running) {
-		cout << "> ";
 		getline(cin, sendMsg);
 
-		int sendResult = send(sock, sendMsg.c_str(), sendMsg.size() + 1, 0);
+		if(sendMsg.length() == 1){ //The message must be one, and only one character
+			int sendResult = send(sock, sendMsg.c_str(), sendMsg.size() + 1, 0);
 
-		if (sendResult == -1) {
-			cout << "Failed to send message" << endl;
-			continue;
+			if (sendResult == -1) {
+				cout << "Failed to send message" << endl;
+				continue;
+			}
+
+		}else{
+			cout << "You may only enter one character at a time!" << endl;
 		}
 	}
 }
@@ -65,11 +70,12 @@ int main() {
 		return 1;
 	}
 
-	char recvMsg[2048];
-	string sendMsg;
+	char recvMsg[64];
 
+	//starting input polling on seperate thread
 	thread input(pollInput);
 
+	//starting network loop, waiting to recieve messages from the server
 	while (running) {
 		memset(recvMsg, 0, sizeof(recvMsg));
 		int recvResult = recv(sock, recvMsg, sizeof(recvMsg), 0);
